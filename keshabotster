@@ -1,0 +1,32 @@
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
+
+TOKEN = '5390077185:AAG7PqlPPwMtUZ4ac5EXfAyN-gMaW1g_ZBE'
+
+def start(update, context):
+    update.message.reply_text("hello to u")
+
+def help(update, context):
+    update.message.reply_text('''
+    commands:
+    
+    /start -> Welcome message
+    /help -> This message
+    /stuff -> I will add some stuff there
+    ''')
+
+def stuff(update, context):
+    update.message.reply_text('There is no stuff yet sorry. Here is a heart❤')
+
+def unknown(update, context):
+    update.message.reply_text('I am too stupid for this, try smth else')
+
+
+updater = Updater(token=TOKEN, use_context= True)
+disp = updater.dispatcher
+disp.add_handler(CommandHandler("start", start))
+disp.add_handler(CommandHandler("help", help))
+disp.add_handler(CommandHandler("stuff", stuff))
+disp.add_handler(MessageHandler(Filters.command,unknown))
+
+updater.start_polling()
+updater.idle()
