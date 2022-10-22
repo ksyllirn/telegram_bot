@@ -19,6 +19,10 @@ def stuff(update, context):
 
 def unknown(update, context):
     update.message.reply_text('I am too stupid for this, try smth else')
+    
+def echo_gif(update: update, context: CallbackContext):
+    context.bot.sendAnimation(chat_id=update.message.chat_id, animation
+    
 
 
 updater = Updater(token=TOKEN, use_context= True)
